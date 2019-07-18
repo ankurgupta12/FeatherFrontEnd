@@ -11,8 +11,9 @@ import { HomeBusinessLogicService } from 'src/app/services/home-business-logic-s
 export class HomeComponent implements OnInit {
   form: FormGroup;
   constantStringEnum = ConstantStringEnum;
-  
-  constructor(private homeBusinessLogicService:HomeBusinessLogicService) {}
+  showSuccesFlag: boolean = false;
+  showFailFlag: boolean;
+  constructor(private homeBusinessLogicService: HomeBusinessLogicService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -24,12 +25,19 @@ export class HomeComponent implements OnInit {
       ]),
       budget: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required)
-  
+
     });
   }
 
   async onSubmit() {
-   let response = await this.homeBusinessLogicService.SaveForm(this.form.value);
-  console.log(response);
+    try {
+      await this.homeBusinessLogicService.SaveForm(this.form.value);
+      this.showSuccesFlag = true;
+      this.form.reset();
+    }
+    catch (e) {
+      this.showFailFlag = true;
+      console.log("Exception: " + e);
+    }
   }
 }

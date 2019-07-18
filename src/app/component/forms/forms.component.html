@@ -1,3 +1,27 @@
-<p>
-  forms works!
-</p>
+<div class="container">
+  <h2>Form List</h2>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date Of Birth</th>
+        <th>Gender</th>
+        <th>Budget</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of formListData  | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total}">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.date_of_birth}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.budget}}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+</div>

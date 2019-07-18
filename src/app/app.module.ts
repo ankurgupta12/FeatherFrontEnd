@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-
+import {NgxPaginationModule} from 'ngx-pagination'; 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing-module';
 import { HomeComponent } from './component/home/home.component';
@@ -19,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

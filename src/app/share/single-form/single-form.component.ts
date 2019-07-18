@@ -12,7 +12,7 @@ form:FormGroup;
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormControl(''),
-      dob: new FormControl(''),
+      date_of_birth: new FormControl(''),
       email: new FormControl(''),
       budget: new FormControl(''),
       gender: new FormControl('')
