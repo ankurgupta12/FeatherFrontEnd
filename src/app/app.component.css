@@ -1,0 +1,9 @@
+.main{
+    background: #4b4a4a;
+    color: white;
+}
+.active-class{
+    background: #e9ecef;
+    width: 120px;
+    text-align: center;
+}

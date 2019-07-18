@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+      <div class="col-10">
+        <div class="jumbotron">
+          <h2>Contact Form</h2>
+          <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+            <div class="form-group">
+              <label for="name">First Name</label>
+              <input type="text"  class="form-control" formControlName="name" [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}" required />
+              <div class="invalid-feedback">
+                <div>{{constantStringEnum?.NameValidation}}</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="dob">Date Of Birth</label>
+              <input type="date" class="form-control" formControlName="date_of_birth" [ngClass]="{'is-invalid':form.get('date_of_birth').touched && form.get('date_of_birth').invalid}" required />
+              <div class="invalid-feedback">
+                <div>{{constantStringEnum?.DateValidation}}</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}"   />
+              <div *ngIf="form.get('email').touched && form.get('email').invalid"  class="invalid-feedback">
+                <div *ngIf="form.get('email').errors.required">{{constantStringEnum?.EmailValidation}}</div>
+                <div *ngIf="form.get('email').errors.email">{{constantStringEnum?.InvalidEmailMessageValidation}}</div>
+              </div>
+            </div>
+            <div class="form-group" >
+                <label style="margin-top:0%">Gender</label>
+                   <div class="row" [ngClass]="{'is-invalid': form.controls['gender'].touched && form.controls['gender'].invalid}">
+                     <span class="col-md-1">
+                    <input type="radio" value="Male" class="form-control radioclass" formControlName="gender">
+                     male
+                     </span>
+                   <span class="col-md-1">
+                      <input type="radio" value="Female" class="form-control radioclass" formControlName="gender">
+                      female
+                      </span>
+                   </div>
+                  <div *ngIf="form.controls['gender'].touched && form.controls['gender'].invalid" class="invalid-feedback radio-validation">
+                      <div>{{constantStringEnum?.GenderValidation}}</div>
+                    </div>
+              </div>
+
+            <div class="form-group">
+              <label for="budget">Budget</label>
+              <input type="number" class="form-control"  formControlName="budget" [ngClass]="{'is-invalid':form.get('budget').touched && form.get('budget').invalid}" />
+              <div class="invalid-feedback">
+                  <div>{{constantStringEnum?.BudgetValidation}}</div>
+                </div>
+             
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary"  [disabled]="!form.valid">Register</button>
+             
+            </div>
+          </form>
+          <button class="btn btn-primary float-right" (click)="isShowFlag = true;"  [disabled]="!form.valid" data-toggle="modal" data-target="#myModal">Preview Form</button>
+        </div>
+       
+      </div>
+    </div>
+    
+  </div>
+
+<app-single-form  *ngIf="isShowFlag" [formData]="this.form.value"></app-single-form>  
+    
